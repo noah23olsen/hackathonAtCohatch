@@ -62,13 +62,11 @@ export default {
     },
     getQuestionsAndAnswers() {
       let responseArraySplit = this.responseFromGPT.split("\n");
-      console.log(responseArraySplit);
       let question = "";
       let choice = {};
 
       for (const line of responseArraySplit) {
         if (line.startsWith("a)")) {
-          console.log("reached inside a");
           choice.a = this.lineWithoutCorrect(line);
         } else if (line.startsWith("b)")) {
           choice.b = this.lineWithoutCorrect(line);
