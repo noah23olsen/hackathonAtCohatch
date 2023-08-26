@@ -23,7 +23,7 @@ export default {
     let topic = ref("java");
     let content = computed(
       () =>
-        `Give me 2 questions about ${topic.value}. Each question should have four multiple choices with only one correct answer. Label the correct answer with (correct) at the end. start each question with the number, and a ")" `
+        `Give me 10 questions about ${topic.value}. Each question should have four multiple choices with only one correct answer. Label the correct answer with (correct) at the end. start each question with the number, and a ")" `
     );
     let responseFromGPT = ref("");
 
