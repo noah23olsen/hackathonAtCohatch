@@ -7,6 +7,7 @@
       :choice="choices[questionIndex]"
       :correctChoice="correctChoices[questionIndex]"
     />
+    <input type="submit" text="submit">
   </div>
 </template>
 
@@ -20,4 +21,12 @@ export default {
 </script>
 
 <style>
+input[type="text"],
+button {
+  font-size: 16px;
+  padding: 10px;
+}
+input{
+  font-size:30px;
+}
 </style>

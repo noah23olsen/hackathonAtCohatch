@@ -1,9 +1,13 @@
 <template>
   <div>
-    <input type="text" id="topic" name="topic" v-model="topic" />
-    <button @click="getGptResponse()">Submit</button>
-    <button @click="clear">Clear</button>
-
+    <img src="../assets/Quiz.AI.png" alt="" v-if="responseFromGPT == ''" />
+    <div class="userInputSection">
+      <label for="topic">Enter a topic </label>
+      <input type="text" id="topic" name="topic" placeholder="give me quizzes for..." v-model="topic" />
+      <button @click="getGptResponse()">Submit</button>
+      <button @click="clear">Clear</button>
+    </div>
+    
     <quiz-component
       v-show="responseFromGPT"
       :questions="questions"
@@ -21,7 +25,7 @@ import QuizComponent from "./QuizComponent.vue";
 export default {
   components: { QuizComponent },
   setup() {
-    let topic = ref("java");
+    let topic = ref("");
     let content = computed(
       () =>
         `Give me 10 questions about ${topic.value}. Each question should have four multiple choices with only one correct answer. Label the correct answer with (correct) at the end. start each question with the number, and a ")" `
@@ -43,12 +47,12 @@ export default {
     };
   },
   methods: {
-    clear(){
+    clear() {
       this.responseFromGPT = "";
-      this.choices=[];
-      this.correctChoice="";
-      this.correctChoices=[];
-      this.questions=[];
+      this.choices = [];
+      this.correctChoice = "";
+      this.correctChoices = [];
+      this.questions = [];
       this.topic = "";
     },
     getGptResponse() {
@@ -109,5 +113,18 @@ export default {
 };
 </script>
 
-<style>
+<style>;
+img{
+  height: 30%;
+  width:30%;
+}
+input[type="text"],
+button {
+  font-size: 16px;
+  padding: 10px;
+}
+input{
+  font-size:30px;
+}
+
 </style>
