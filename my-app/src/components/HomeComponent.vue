@@ -16,7 +16,7 @@ import openAIService from "../services/OpenAIService";
 export default {
   setup() {
     let topic = ref("java");
-    let content = computed(() => `Give me 10 questions about ${topic.value}. Each question should have four multiple choices with only one correct answer.`);
+    let content = computed(() => `Give me 10 questions about ${topic.value}. Each question should have four multiple choices with only one correct answer. Label the correct answer with (correct) at the end.`);
     let responseFromGPT = ref("");
     return { topic, content, responseFromGPT };
   },
