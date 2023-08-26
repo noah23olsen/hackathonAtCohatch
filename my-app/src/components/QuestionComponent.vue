@@ -3,18 +3,18 @@
     <h1>{{ question }}</h1>
     <div class="choiceContainer">
     <div class="individualChoice">
-      <input type="radio" id="a" value="a" v-model="picked" @click="isChoiceCorrect('a')" />
+      <input type="radio" value="a" v-model="picked" @click="isChoiceCorrect('a')" />
       <label :class="{ correct: isChoiceCorrect('a'), incorrect: isChoiceIncorrect('a') }" for="a">{{ choice.a }}</label>
     </div>
     <div class="individualChoice">
-      <input type="radio" id="b" value="b" v-model="picked" @click="isChoiceCorrect('b')" />
+      <input type="radio"  value="b" v-model="picked" @click="isChoiceCorrect('b')" />
        <label :class="{ correct: isChoiceCorrect('b'), incorrect: isChoiceIncorrect('b') }" for="b">{{ choice.b }}</label>
     </div>
     <div class="individualChoice">
-       <input type="radio" id="c" value="c" v-model="picked"  @click="isChoiceCorrect('c')"/>
+       <input type="radio"  value="c" v-model="picked"  @click="isChoiceCorrect('c')"/>
  <label :class="{ correct: isChoiceCorrect('c'), incorrect: isChoiceIncorrect('c') }" for="c">{{ choice.c }}</label>    </div>
     <div class="individualChoice">
-      <input type="radio" id="d" value="d" v-model="picked" @click="isChoiceCorrect('d')" />
+      <input type="radio"  value="d" v-model="picked" @click="isChoiceCorrect('d')" />
        <label :class="{ correct: isChoiceCorrect('d'), incorrect: isChoiceIncorrect('d') }" for="d">{{ choice.d }}</label>
     </div>
     </div>
@@ -75,5 +75,9 @@ export default {
   color: red;
   background-color: white;
   border: 1px solid red;
+}
+input[type="radio"] {
+  transform: scale(2);
+  margin:10px; /* Increase the scale as needed */
 }
 </style>
