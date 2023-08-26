@@ -1,30 +1,38 @@
 <template>
   <div>
-    <button @click="getGptResponse">{{this.responseFromGPT}}</button>
+    <input type="text" id="topic" name="topic" v-model="topic" />
+    <button @click="getGptResponse()">Submit</button>
+    <h1>{{ topic }}</h1>
+    <h1>{{ content }}</h1>
+    <h1>{{ responseFromGPT }}</h1>
   </div>
 </template>
 
 <script>
-import OpenAiService from '../services/OpenAiService';
+
+import { ref, computed } from "vue";
+import openAIService from "../services/OpenAIService";
+
 export default {
   setup() {
-      let topic = "java";  
-      let responseFromGPT=  "";
-      return {topic, responseFromGPT};
+    let topic = ref("java");
+    let content = computed(() => `Give me 10 questions about ${topic.value}. Each question should have four multiple choices with only one correct answer.`);
+    let responseFromGPT = ref("");
+    return { topic, content, responseFromGPT };
   },
-methods: {
-getGptResponse() {
-      OpenAiService.generateChat()
+  methods: {
+    getGptResponse() {
+      openAIService
+        .generateQuiz(this.content)
         .then((response) => {
-          this.responseFromGPT = (response.data.choices[0].message.content);
+          this.responseFromGPT = response.data.choices[0].message.content;
           console.log(response.data.choices[0].message.content);
         })
-        .catch(error=>console.log(error));
+        .catch((error) => console.log(error));
     },
-}
-}
+  },
+};
 </script>
 
 <style>
-
 </style>
