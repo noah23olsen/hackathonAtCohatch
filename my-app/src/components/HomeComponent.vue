@@ -74,6 +74,12 @@ export default {
       return str;
     },
     getQuestionsAndAnswers() {
+      this.choices = [];
+      this.correctChoice = "";
+      this.correctChoices = [];
+      this.questions = [];
+
+
       let responseArraySplit = this.responseFromGPT.split("\n");
       console.log(responseArraySplit);
       let question = "";
