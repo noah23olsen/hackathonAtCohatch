@@ -1,18 +1,12 @@
 <template>
   <div>
     <question-component
-      v-for="(question,
-      questionIndex)
-      in
-      questions"
+      v-for="(question, questionIndex) in questions"
       :key="question"
       :question="question"
       :choice="choices[questionIndex]"
       :correctChoice="correctChoices[questionIndex]"
     />
-    <!-- <p>{{ questions }}</p>
-    <p>{{ choices }}</p>
-    <p>{{ correctChoices }}</p> -->
   </div>
 </template>
 

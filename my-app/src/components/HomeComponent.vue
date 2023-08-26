@@ -23,7 +23,7 @@ export default {
     let topic = ref("java");
     let content = computed(
       () =>
-        `Give me 2 questions about ${topic.value}. Each question should have four multiple choices with only one correct answer. Label the correct answer with (correct) at the end. start each question with the number, and a ")" `
+        `Give me 10 questions about ${topic.value}. Each question should have four multiple choices with only one correct answer. Label the correct answer with (correct) at the end. start each question with the number, and a ")" `
     );
     let responseFromGPT = ref("");
 
@@ -62,17 +62,11 @@ export default {
     },
     getQuestionsAndAnswers() {
       let responseArraySplit = this.responseFromGPT.split("\n");
-      console.log(responseArraySplit);
       let question = "";
       let choice = {};
 
       for (const line of responseArraySplit) {
-        console.log(line);
-        if (/^[0-9]/.test(line)) {
-          question = line;
-          this.questions.push(question);
-        } else if (line.includes("a)")) {
-          console.log("reached inside a");
+        if (line.startsWith("a)")) {
           choice.a = this.lineWithoutCorrect(line);
         } else if (line.startsWith("b)")) {
           choice.b = this.lineWithoutCorrect(line);
@@ -80,13 +74,13 @@ export default {
           choice.c = this.lineWithoutCorrect(line);
         } else if (line.startsWith("d)")) {
           choice.d = this.lineWithoutCorrect(line);
-        } else {
-          // console.log('reached the else block ' + line)
-          // this.question += line;
+        } else if (line) {
+          question += line + "\n";
         }
-        console.log(choice);
+
         if (Object.keys(choice).length == 4) {
-          console.log("there were 4 keys");
+          this.questions.push(question);
+          question = "";
 
           this.choices.push({ ...choice });
           choice = {};
