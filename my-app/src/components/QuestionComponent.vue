@@ -3,22 +3,22 @@
     <h2>{{ question }}</h2>
     <div class="choiceContainer">
     <div class="individualChoice">
-      <input type="radio" id="a" value="a" v-model="picked" />
-      <label for="a">{{ choice.a }}</label>
+      <input type="radio" id="a" value="a" v-model="picked" @click="isChoiceCorrect('a')" />
+      <label :class="{ correct: isChoiceCorrect('a') }" for="a">{{ choice.a }}</label>
+</div>
     </div>
     <div class="individualChoice">
-      <input type="radio" id="b" value="b" v-model="picked" />
-      <label for="b">{{ choice.b }}</label>
+      <input type="radio" id="b" value="b" v-model="picked" @click="isChoiceCorrect('b')" />
+      <label :class="{ correct: isChoiceCorrect('b') }" for="b">{{ choice.b }}</label>
     </div>
     <div class="individualChoice">
-       <input type="radio" id="c" value="c" v-model="picked" />
-       <label for="c">{{ choice.c }}</label>
+       <input type="radio" id="c" value="c" v-model="picked"  @click="isChoiceCorrect('c')"/>
+       <label :class="{ correct: isChoiceCorrect('c') }" for="c">{{ choice.c }}</label>
     </div>
     <div class="individualChoice">
-      <input type="radio" id="d" value="d" v-model="picked" />
-      <label for="d">{{ choice.d }}</label>
+      <input type="radio" id="d" value="d" v-model="picked" @click="isChoiceCorrect('d')" />
+      <label :class="{ correct: isChoiceCorrect('d') }" for="d">{{ choice.d }}</label>
     </div>
-  </div>
   </main>
 </template>
 
@@ -31,9 +31,9 @@ export default {
     return { picked };
   },
   methods: {
-    checkAnswer() {
-      return this.picked == this.correctChoice;
-    },
+    isChoiceCorrect(choice) {
+    return this.correctChoice === choice && this.picked === choice;
+  }
   },
 };
 </script>
@@ -48,6 +48,7 @@ export default {
   display: flex;
   flex-direction: column;
   border: 2px solid black;
+  border-radius:25px;
   background-color: whitesmoke;
   margin: 10px;
   width: 70%;
@@ -56,11 +57,15 @@ export default {
 }
 .choiceContainer {
   display: flex;
-  border: 2px solid black;
   flex-direction: column;
   background-color: whitesmoke;
   margin: 10px;
   height: 70%;
   width:auto;
 }
+.correct{
+  color:lime;
+  background-color:gray;
+ }
+
 </style>
