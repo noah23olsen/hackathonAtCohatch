@@ -5,7 +5,6 @@
     <div class="individualChoice">
       <input type="radio" id="a" value="a" v-model="picked" @click="isChoiceCorrect('a')" />
       <label :class="{ correct: isChoiceCorrect('a') }" for="a">{{ choice.a }}</label>
-</div>
     </div>
     <div class="individualChoice">
       <input type="radio" id="b" value="b" v-model="picked" @click="isChoiceCorrect('b')" />
@@ -18,6 +17,7 @@
     <div class="individualChoice">
       <input type="radio" id="d" value="d" v-model="picked" @click="isChoiceCorrect('d')" />
       <label :class="{ correct: isChoiceCorrect('d') }" for="d">{{ choice.d }}</label>
+    </div>
     </div>
   </main>
 </template>
