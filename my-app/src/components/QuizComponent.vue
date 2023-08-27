@@ -1,4 +1,5 @@
 <template>
+<section>
   <div>
     <question-component
       v-for="(question, questionIndex) in questions"
@@ -7,16 +8,26 @@
       :choice="choices[questionIndex]"
       :correctChoice="correctChoices[questionIndex]"
     />
-    <input type="submit" text="submit">
+    <input type="submit" @click="changeImgValueToTrue" text="submit">
   </div>
+  </section>
 </template>
 
 <script>
 import QuestionComponent from "./QuestionComponent.vue";
-
+import { ref } from "vue";
 export default {
+  setup(){
+    let imgVal = ref(false);
+    return {imgVal}
+  },
   components: { QuestionComponent },
   props: ["questions", "choices", "correctChoices"],
+  methods: {
+    changeImgValueToTrue(){
+      this.imgVal = true;
+    }
+  }
 };
 </script>
 
