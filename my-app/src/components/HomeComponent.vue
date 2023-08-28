@@ -62,7 +62,7 @@ export default {
           this.responseFromGPT = response.data.choices[0].message.content;
           this.getQuestionsAndAnswers();
         })
-        .catch((error) => console.log(error + "this is an error!!!!"));
+        .catch((error) => console.log(error));
     },
     lineWithoutCorrect(str) {
       const indicator = "(correct)";
