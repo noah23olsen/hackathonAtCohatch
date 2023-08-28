@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
 generateQuiz(content) {
-    const apiKey = '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'; // Use VUE_APP_ prefix for Vue environment variables
+    const apiKey = process.env.VUE_APP_OPENAI_API_KEY;
 
    return axios.post(
         "https://api.openai.com/v1/chat/completions",
